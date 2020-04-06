@@ -1,6 +1,10 @@
 import oauth2 as oauth
 import urllib2 as urllib
 
+# put our creds here and run the command
+# $ python twitterstream.py > output.txt
+# head -n 10 output.txt > _results/twitterstream_results.txt
+
 api_key = "<Enter api key>"
 api_secret = "<Enter api secret>"
 access_token_key = "<Enter your access token key here>"
@@ -30,7 +34,7 @@ def twitter_request(url, method, parameters):
     response = opener.open(url, encoded_post_data)
     return response
 
-def fetch():
+def main():
     url = "https://stream.twitter.com/1/statuses/sample.json"
     http_method = "GET"
     parameters = []
@@ -39,4 +43,4 @@ def fetch():
         print line.strip()
 
 if __name__ == '__main__':
-    fetch()
+    main()

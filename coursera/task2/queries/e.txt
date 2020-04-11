@@ -1,0 +1,3 @@
+select count(*) from (
+    select docid, count(distinct term) as c from frequency group by docid having c > 300
+) x;

@@ -1,0 +1,16 @@
+create view if not exists table1 as
+select * from frequency
+union
+select 'q' as docid, 'washington' as term, 1 as count 
+union
+select 'q' as docid, 'taxes' as term, 1 as count
+union 
+select 'q' as docid, 'treasury' as term, 1 as count;
+
+select max(similarity) from(
+    select A.docid, B.docid, sum(A.count * B.count) as similarity 
+    from table1  A, table1 B on A.term = B.term  
+    where A.docid = 'q' and B.docid != 'q'
+    group by A.docid, B.docid
+    order by similarity desc limit 10
+);

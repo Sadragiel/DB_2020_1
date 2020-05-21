@@ -1,0 +1,1 @@
+module.exports = originalUrl => `${process.env.REACT_APP_API_HOST}${originalUrl}`;

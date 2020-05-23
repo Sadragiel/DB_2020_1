@@ -4,5 +4,5 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = {
     serverPort: process.env.SERVER_PORT,
-    databaseUrl: "mongodb://heroku_user:porter2556@ds249873.mlab.com:49873/lab6db"
+    databaseUrl: "mongodb://127.0.0.1:27017/dotastuff"
 };

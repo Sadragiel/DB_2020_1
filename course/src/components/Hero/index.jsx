@@ -13,7 +13,6 @@ import Header from './Header';
 import Benchmark from './Benchmark';
 import Matchups from './Matchups';
 import AttributesBlock from './AttributesBlock';
-import Durations from './Durations';
 
 const HeroBlock = styled.div`
   margin-bottom: 8px;

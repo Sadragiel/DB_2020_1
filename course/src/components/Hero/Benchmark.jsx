@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import { shape, func, bool, arrayOf, oneOfType, string } from 'prop-types';
 import { connect } from 'react-redux';
 import { getBenchmark } from '../../actions';
-import BenchmarkTable from './BenchmarkTable';
 import BenchmarkGraphs from './BenchmarkGraphs';
 import BenchmarkSkeleton from '../Skeletons/BenchmarkSkeleton';
 
-const renderBenchmark = (hero, data, strings) => (
+const renderBenchmark = (hero, data, correlation, strings) => (
   <div>
-    <BenchmarkGraphs data={data} strings={strings} />
-    <BenchmarkTable data={data} />
+    <BenchmarkGraphs correlation={correlation} data={data} strings={strings} />
   </div>
 );
 
@@ -42,7 +40,7 @@ class Benchmark extends Component {
 
   render() {
     const {
-      isLoading, isError, hero, result,
+      isLoading, isError, hero, result, correlation,
     } = this.props;
 
     return (
@@ -50,7 +48,7 @@ class Benchmark extends Component {
         {isLoading || isError || result === null ? (
           <BenchmarkSkeleton />
         ) : (
-          renderBenchmark(hero, result, this.props.strings)
+          renderBenchmark(hero, result, correlation, this.props.strings)
         )}
       </div>
     );
@@ -88,6 +86,7 @@ const mapStateToProps = state => ({
   isLoading: state.app.heroBenchmark.loading,
   isError: state.app.heroBenchmark.error,
   result: state.app.heroBenchmark.data.result,
+  correlation: state.app.heroBenchmark.data.correlation,
 });
 
 const mapDispatchToProps = dispatch => ({

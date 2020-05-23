@@ -697,7 +697,6 @@ export const transformations = {
       </span>
     </div>),
   radiant_win_and_game_mode: (row, col, field) => {
-    const matchId = row.match_id;
     const { strings } = store.getState().app;
     const won = field === isRadiant(row.player_slot);
     const getColor = (result) => {
@@ -753,11 +752,9 @@ export const transformations = {
 
     return (
       <div>
-        <TableLink to={`/matches/${matchId}`} color={getColor(field)}>
-          <span style={{ color: getColor(field) }}>
-            {getString(field)}
-          </span>
-        </TableLink>
+        <span style={{ color: getColor(field) }}>
+          {getString(field)}
+        </span>
         <div>
           <span style={{ ...subTextStyle, marginTop: 1, display: 'inline' }}>
             {row.league_name ? row.league_name : strings[`lobby_type_${row.lobby_type}`]}

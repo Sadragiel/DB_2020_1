@@ -844,15 +844,6 @@ export default (strings) => {
       sumFn: true,
     },
     {
-      displayName: strings.th_lhten,
-      tooltip: strings.tooltip_lhten,
-      field: 'lh_ten',
-      sortFn: true,
-      displayFn: (row, col, field) => field || '-',
-      relativeBars: true,
-      sumFn: true,
-    },
-    {
       displayName: strings.th_dnten,
       tooltip: strings.tooltip_dnten,
       field: 'dn_ten',

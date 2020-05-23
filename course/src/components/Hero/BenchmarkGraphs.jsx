@@ -17,24 +17,40 @@ const Wrapper = styled.div`
   }
 `;
 
+const buildLabel = (title, correlation) => {
+  if(!correlation) return title;
+  // eslint-disable-next-line no-unused-vars
+  let conclution = `Корреляция - ${correlation > 0 ? 'положительная' : 'отрицательная' } и `;
+  if(Math.abs(correlation) < 0.3) {
+    conclution += 'очень слабая';
+  }
+  else if(Math.abs(correlation) < 0.5) {
+    conclution += 'слабая';
+  }
+  else if(Math.abs(correlation) < 0.7) {
+    conclution += 'средняя';
+  }
+  else if(Math.abs(correlation) < 0.9) {
+    conclution += 'высокая';
+  }
+  else {
+    conclution += 'очень высокая';
+  }
+  return `${title}. ${conclution} и равна ${correlation}`;
+}
+
 const mapData = (data, key) => data.map(item => ({ Percentage: (`${item.percentile * 100}%`), Value: typeof item[key] === 'number' && Number(item[key].toFixed(2)) }));
 
-const getData = (data, strings) => [
-  { title: strings.tooltip_gold_per_min, data: mapData(data, 'gold_per_min'), color: constants.golden },
-  { title: strings.tooltip_xp_per_min, data: mapData(data, 'xp_per_min'), color: constants.blue },
-  { title: strings.tooltip_hero_damage_per_min, data: mapData(data, 'hero_damage_per_min'), color: constants.red },
-  { title: strings.tooltip_hero_healing_per_min, data: mapData(data, 'hero_healing_per_min'), color: constants.green },
-  { title: strings.tooltip_kills_per_min, data: mapData(data, 'kills_per_min'), color: constants.yelor },
-  { title: strings.tooltip_last_hits_per_min, data: mapData(data, 'last_hits_per_min'), color: constants.colorBlueGray },
-  { title: strings.tooltip_lhten, data: mapData(data, 'lhten'), color: constants.golden },
-  { title: strings.tooltip_stuns_per_min, data: mapData(data, 'stuns_per_min'), color: constants.red },
+const getData = (data, correlation, strings) => [
+  { title: buildLabel(strings.tooltip_gold_per_min, correlation.gold_per_min), data: mapData(data, 'gold_per_min'), color: constants.golden },
+  { title: buildLabel(strings.tooltip_xp_per_min, correlation.xp_per_min), data: mapData(data, 'xp_per_min'), color: constants.blue },
 ];
 
-const renderGraphs = data => data.map(graphData => <BenchmarkGraph key={graphData.title} data={graphData} />);
+const renderGraphs = data => data.map(graphData => 
+  <BenchmarkGraph key={graphData.title} data={graphData} />);
 
-const BenchmarkGraphs = ({ data, strings }) => {
-  const mappedData = getData(data, strings);
-
+const BenchmarkGraphs = ({ data, correlation, strings }) => {
+  const mappedData = getData(data, correlation, strings);
   return (
     <Wrapper>
       { renderGraphs(mappedData) }

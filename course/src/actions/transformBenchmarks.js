@@ -14,5 +14,5 @@ export default function transformBenchmarks(data) {
     });
     benchmarks.push(percentilePerStat);
   }
-  return { result: benchmarks };
+  return { result: benchmarks, correlation: data.correlation };
 }

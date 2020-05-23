@@ -5,9 +5,8 @@ const busboyBodyParser = require('busboy-body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const axios = require("axios");
 const config = require('./config');   
-
+const proxy = require('./utils/proxy');
 const routes = require('./routes');
 
 const app = express();
@@ -27,15 +26,10 @@ app.use(busboyBodyParser({}));
 
 app.use('/static', express.static('public'));
 app.use(express.static(path.join(`${__dirname  }/../dist/`)));
-
-routes.forEach(rout => app.use(rout));
-
-app.use('*', (req, res) => {
-    // res.sendFile(path.join(`${__dirname  }/../dist/index.html`));
-    axios.get(`https://api.opendota.com${req.originalUrl}`)
-    .then(response => res.json(response.data));
-});
-
+routes.forEach(rout => 
+    app.use(rout)
+);
+app.use(proxy);
 app.use((err, req, res) => {
     // eslint-disable-next-line no-console
     console.error(err.stack);

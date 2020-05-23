@@ -175,19 +175,9 @@ const Header = () => {
 
   const navbarPages = [
     {
-      key: 'header_matches',
-      to: '/matches',
-      label: strings.header_matches,
-    },
-    {
       key: 'header_heroes',
       to: '/heroes',
       label: strings.header_heroes,
-    },
-    {
-      key: 'header_records',
-      to: '/records',
-      label: strings.header_records,
     },
   ];
 

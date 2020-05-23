@@ -14,7 +14,6 @@ const Home = ({ strings }) => (
         {strings.app_description}
       </DescriptionDiv>
     </HeadContainerDiv>
-    <Why />
   </div>
 );
 

@@ -39,7 +39,7 @@ class RequestLayer extends React.Component {
     const {
       loading, matchId, matchData, error, strings, match, user,
     } = this.props;
-    const info = match.params.info || 'overview';
+    const info = match.params.info || 'graphs';
     const page = matchPages(matchId, null, strings).find(_page => _page.key.toLowerCase() === info);
     const pageTitle = page ? `${matchId} - ${page.name}` : matchId;
     if (error && !loading) {

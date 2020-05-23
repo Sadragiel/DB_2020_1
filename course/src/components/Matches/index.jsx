@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import { transformations, subTextStyle } from '../../utility';
 import { getProMatches, getPublicMatches } from '../../actions';
-import Table, { TableLink } from '../Table';
+import Table from '../Table';
 // import Heading from '../Heading';
 import { IconTrophy } from '../Icons';
 import Match from '../Match';
@@ -32,7 +32,7 @@ const matchesColumns = strings => [{
   sortFn: true,
   displayFn: (row, col, field) => (
     <div>
-      <TableLink to={`/matches/${field}`}>{field}</TableLink>
+      {field}
       <div style={{ ...subTextStyle }}>
         <div style={{ float: 'left' }}>
           <FromNowTooltip timestamp={row.start_time + row.duration} />

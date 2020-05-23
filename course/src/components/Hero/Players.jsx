@@ -57,14 +57,6 @@ class Players extends React.Component {
         sortFn: true,
         displayFn: (row, col, field) => `${field}`,
       },
-      {
-        tooltip: strings.tooltip_advantage,
-        field: 'advantage',
-        displayName: strings.th_advantage,
-        relativeBars: true,
-        sortFn: true,
-        displayFn: (row, col, field) => `${field}`,
-      },
     ];
 
     if (isLoading) {

@@ -88,18 +88,7 @@ class Hero extends React.Component {
           </div>
         ),
         route: `/heroes/${tabsHeroId}/matchups`,
-      },
-      {
-        name: strings.tab_durations,
-        key: 'durations',
-        content: props => (
-          <div>
-            <Heading title={strings.tab_durations} subtitle={strings.hero_disclaimer_pro} />
-            <Durations {...props} />
-          </div>
-        ),
-        route: `/heroes/${tabsHeroId}/durations`,
-      },
+      }
     ];
 
     const currentTab = tabs(heroId).find(tab => tab.key === route);

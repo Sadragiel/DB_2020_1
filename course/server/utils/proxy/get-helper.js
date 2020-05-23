@@ -51,6 +51,7 @@ module.exports = {
         if(!hero.matchups || !hero.matchups.length) {
             const matchups = await axios.get(url).then(r => r.data);
             hero.matchups = matchups;
+            await heroDB.update(hero);
         }
         return hero.matchups;
     },

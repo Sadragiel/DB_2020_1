@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-undef */
 /* eslint-disable prefer-template */
 const express = require('express');
@@ -33,7 +34,7 @@ async function equalizeHeroesForDbAndApi() {
     );
 }
 
-router.get('/db/backup', async (req, res) => {
+router.get('/db/pull', async (req, res) => {
     await equalizeHeroesForDbAndApi();
     res.sendStatus(200);
 });
